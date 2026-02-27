@@ -1,10 +1,23 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
+
+const navLinks = [
+  { href: "#features", label: "Features" },
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#faq", label: "FAQ" },
+];
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const scrollToWaitlist = () => {
+    setMobileOpen(false);
+    document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <motion.nav
@@ -18,10 +31,13 @@ const Navbar = () => {
           Promo<span className="gold-gradient-text">GPT</span>
         </span>
 
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</a>
-          <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
-          <a href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              {link.label}
+            </a>
+          ))}
         </div>
 
         <div className="flex items-center gap-3">
@@ -31,16 +47,52 @@ const Navbar = () => {
             aria-label="Toggle dark mode"
           >
             {theme === "dark" ? (
-              <Sun className="w-4 h-4 text-gold" strokeWidth={1.5} />
+              <Sun className="w-4 h-4 text-accent" strokeWidth={1.5} />
             ) : (
               <Moon className="w-4 h-4 text-primary" strokeWidth={1.5} />
             )}
           </button>
-          <Button variant="gold" size="sm" className="text-sm" onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}>
+          <Button variant="gold" size="sm" className="hidden sm:inline-flex text-sm" onClick={scrollToWaitlist}>
             Join Waitlist
           </Button>
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden w-9 h-9 rounded-full bg-secondary flex items-center justify-center"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-lg"
+          >
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <Button variant="gold" size="sm" className="w-full mt-2" onClick={scrollToWaitlist}>
+                Join Waitlist
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

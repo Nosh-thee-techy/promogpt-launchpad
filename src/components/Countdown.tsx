@@ -20,7 +20,7 @@ const CountdownUnit = ({ value, label }: { value: number; label: string }) => {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="relative glass-card rounded-xl w-20 h-24 sm:w-24 sm:h-28 flex items-center justify-center border-2 border-primary/20">
+      <div className="relative glass-card rounded-xl w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 flex items-center justify-center border-2 border-primary/20">
         <AnimatePresence mode="popLayout">
           <motion.span
             key={value}
@@ -28,7 +28,7 @@ const CountdownUnit = ({ value, label }: { value: number; label: string }) => {
             animate={{ rotateX: 0, opacity: 1 }}
             exit={{ rotateX: 90, opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-3xl sm:text-4xl font-heading font-bold text-gold"
+            className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-gold"
           >
             {String(value).padStart(2, "0")}
           </motion.span>
@@ -74,7 +74,7 @@ const Countdown = () => {
           <h2 className="text-3xl sm:text-4xl font-bold mb-10">
             Launching Version 1 <span className="gold-gradient-text">In</span>
           </h2>
-          <div className="flex justify-center gap-4 sm:gap-6">
+          <div className="flex justify-center gap-3 sm:gap-4 md:gap-6">
             <CountdownUnit value={timeLeft.days} label="Days" />
             <CountdownUnit value={timeLeft.hours} label="Hours" />
             <CountdownUnit value={timeLeft.minutes} label="Minutes" />

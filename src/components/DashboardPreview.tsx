@@ -97,7 +97,7 @@ const DashboardPreview = () => {
           className="glass-card rounded-2xl p-6 sm:p-8 max-w-5xl mx-auto"
         >
           {/* KPI cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-8 lg:grid-cols-4">
             {kpis.map((kpi, i) => (
               <motion.div
                 key={kpi.label}
@@ -175,7 +175,7 @@ const DashboardPreview = () => {
               { label: "Purchases", value: "840", width: "18%" },
             ].map((step) => (
               <div key={step.label} className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-28 text-right shrink-0">{step.label}</span>
+                <span className="text-[10px] sm:text-xs text-muted-foreground w-20 sm:w-28 text-right shrink-0">{step.label}</span>
                 <div className="flex-1 bg-secondary/50 rounded-full h-6 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}

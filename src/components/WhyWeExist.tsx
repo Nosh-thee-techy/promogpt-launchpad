@@ -57,11 +57,11 @@ const WhyWeExist = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group grid grid-cols-[auto_1fr] gap-6 sm:gap-8 py-8 border-b border-border/40 last:border-b-0 first:pt-0"
+              className="group grid grid-cols-[auto_1fr] gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/40 last:border-b-0 first:pt-0"
             >
               {/* Big number */}
               <div className="flex flex-col items-center gap-2">
-                <span className="text-4xl sm:text-5xl font-heading font-bold gold-gradient-text leading-none">
+                <span className="text-3xl sm:text-5xl font-heading font-bold gold-gradient-text leading-none">
                   {reason.number}
                 </span>
                 <reason.icon className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors" strokeWidth={1.5} />

@@ -28,12 +28,12 @@ const Hero = () => {
               <span className="text-sm font-medium text-muted-foreground">Early Access — Limited Spots Available</span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
               Your AI-Powered{" "}
               <span className="gold-gradient-text">Marketing Team</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
               Turn product data into real campaigns, real engagement, and real sales.
             </p>
 

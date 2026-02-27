@@ -32,7 +32,7 @@ const features = [
 const AfricaMapSilhouette = () => (
   <svg
     viewBox="0 0 500 600"
-    className="w-full max-w-[280px] mx-auto opacity-[0.08] dark:opacity-[0.12]"
+    className="w-full max-w-[200px] sm:max-w-[280px] mx-auto opacity-[0.08] dark:opacity-[0.12]"
     fill="none"
     stroke="hsl(var(--primary))"
     strokeWidth="1.5"
@@ -76,7 +76,7 @@ const BuiltForAfrica = () => {
         </motion.div>
 
         {/* Split layout: map left, feature list right */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
           {/* Map visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
