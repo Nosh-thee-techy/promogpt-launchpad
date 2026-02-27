@@ -7,25 +7,21 @@ const steps = [
     icon: Store,
     title: "Connect Your Business",
     description: "Link your product catalog, store, or inventory. We sync everything in minutes.",
-    visual: "🏪 → 📊",
   },
   {
     icon: Brain,
     title: "AI Builds Campaign Strategy",
     description: "PromoGPT analyzes your data and creates tailored marketing campaigns automatically.",
-    visual: "📊 → 📢",
   },
   {
     icon: Share2,
     title: "We Post & Track Performance",
     description: "Campaigns go live on your approved platforms. Every click and conversion is tracked.",
-    visual: "📢 → 📱",
   },
   {
     icon: TrendingUp,
     title: "You See Real Sales Impact",
     description: "Watch real revenue roll in with weekly intelligence updates and optimization.",
-    visual: "📈",
   },
 ];
 
@@ -53,61 +49,46 @@ const HowItWorks = () => {
           </h2>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative max-w-2xl mx-auto">
           {/* Animated vertical timeline line */}
-          <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-border">
+          <div className="absolute left-5 sm:left-6 top-0 bottom-0 w-0.5 bg-border">
             <motion.div
               className="w-full gold-gradient rounded-full origin-top"
               style={{ height: lineHeight }}
             />
           </div>
 
-          <div className="space-y-12 md:space-y-16">
-            {steps.map((step, index) => {
-              const isLeft = index % 2 === 0;
-
-              return (
+          <div className="space-y-0">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="relative flex items-start gap-6 py-8 border-b border-border/30 last:border-b-0"
+              >
+                {/* Timeline dot */}
                 <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className={`relative flex items-start gap-6 md:gap-0 ${
-                    isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  className="relative z-10 shrink-0"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                 >
-                  {/* Timeline dot */}
-                  <motion.div
-                    className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10"
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                  >
-                    <div className="w-12 h-12 rounded-full gold-gradient flex items-center justify-center shadow-lg shadow-accent/20">
-                      <step.icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                    </div>
-                  </motion.div>
-
-                  {/* Content card */}
-                  <div
-                    className={`ml-16 md:ml-0 md:w-[calc(50%-3rem)] ${
-                      isLeft ? "md:pr-8 md:text-right" : "md:pl-8"
-                    }`}
-                  >
-                    <div className="glass-card rounded-xl p-5 hover:shadow-lg hover:shadow-accent/5 transition-shadow duration-300">
-                      <div className="text-2xl mb-2">{step.visual}</div>
-                      <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
-                    </div>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full gold-gradient flex items-center justify-center shadow-lg shadow-accent/20">
+                    <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" strokeWidth={1.5} />
                   </div>
-
-                  {/* Spacer for opposite side */}
-                  <div className="hidden md:block md:w-[calc(50%-3rem)]" />
                 </motion.div>
-              );
-            })}
+
+                {/* Inline text — no card wrapper */}
+                <div className="pt-1">
+                  <span className="text-xs font-bold text-accent uppercase tracking-widest">Step {index + 1}</span>
+                  <h3 className="text-lg font-semibold mt-1 mb-1">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed max-w-md">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

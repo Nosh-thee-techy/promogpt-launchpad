@@ -4,21 +4,25 @@ import { Ban, Database, Lightbulb, Users } from "lucide-react";
 const reasons = [
   {
     icon: Ban,
+    number: "01",
     title: "Marketing agencies are expensive",
     description: "Most African SMEs can't afford $2,000+/month for a marketing team. PromoGPT gives you agency-level execution at a fraction of the cost.",
   },
   {
     icon: Database,
+    number: "02",
     title: "Data exists but isn't used",
     description: "Your product data, customer behavior, and sales patterns hold gold — but most businesses never turn it into action.",
   },
   {
     icon: Lightbulb,
+    number: "03",
     title: "SMEs need execution, not advice",
     description: "You don't need another marketing guide. You need campaigns created, posted, and tracked — automatically.",
   },
   {
     icon: Users,
+    number: "04",
     title: "Your virtual marketing team",
     description: "PromoGPT acts as a full marketing department — strategizing, creating, posting, and optimizing in real time.",
   },
@@ -44,22 +48,33 @@ const WhyWeExist = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        {/* Large numbered list with dividers */}
+        <div className="space-y-0">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="flex gap-4 p-5 rounded-2xl glass-card"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group grid grid-cols-[auto_1fr] gap-6 sm:gap-8 py-8 border-b border-border/40 last:border-b-0 first:pt-0"
             >
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
-                <reason.icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
+              {/* Big number */}
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl sm:text-5xl font-heading font-bold gold-gradient-text leading-none">
+                  {reason.number}
+                </span>
+                <reason.icon className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors" strokeWidth={1.5} />
               </div>
+
+              {/* Text */}
               <div>
-                <h3 className="font-semibold mb-1">{reason.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{reason.description}</p>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
+                  {reason.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed max-w-lg">
+                  {reason.description}
+                </p>
               </div>
             </motion.div>
           ))}
