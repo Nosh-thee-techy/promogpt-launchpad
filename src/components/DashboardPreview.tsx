@@ -201,7 +201,7 @@ const DashboardPreview = () => {
             animate={{ opacity: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, y: 20 }}
             className="fixed bottom-6 right-6 z-50 glass-card rounded-xl px-5 py-3 shadow-2xl border border-accent/20 cursor-pointer max-w-xs"
-            onClick={() => setShowPopout(false)}
+            onClick={() => { setShowPopout(false); document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" }); }}
           >
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />

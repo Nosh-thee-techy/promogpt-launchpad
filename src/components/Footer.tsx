@@ -1,4 +1,11 @@
-import { Twitter, Linkedin, Instagram } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+
+const socials = [
+  { href: "https://www.linkedin.com/company/promogpt", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://instagram.com/promo_gpt", icon: Instagram, label: "Instagram" },
+  { href: "https://x.com/promo_gpt", icon: Twitter, label: "X" },
+  { href: "mailto:promogpt.ke@gmail.com", icon: Mail, label: "Email" },
+];
 
 const Footer = () => {
   return (
@@ -15,15 +22,18 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#" className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors">
-              <Twitter className="w-4 h-4 text-primary" strokeWidth={1.5} />
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors">
-              <Linkedin className="w-4 h-4 text-primary" strokeWidth={1.5} />
-            </a>
-            <a href="#" className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors">
-              <Instagram className="w-4 h-4 text-primary" strokeWidth={1.5} />
-            </a>
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors"
+              >
+                <s.icon className="w-4 h-4 text-primary" strokeWidth={1.5} />
+              </a>
+            ))}
           </div>
         </div>
 
@@ -32,9 +42,9 @@ const Footer = () => {
             © {new Date().getFullYear()} PromoGPT. All rights reserved.
           </p>
           <div className="flex gap-6">
+            <a href="mailto:promogpt.ke@gmail.com" className="text-xs text-muted-foreground hover:text-primary transition-colors">Contact</a>
             <a href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">Privacy</a>
             <a href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">Terms</a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">Contact</a>
           </div>
         </div>
 

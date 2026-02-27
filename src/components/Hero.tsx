@@ -38,10 +38,10 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="gold" size="lg" className="text-base px-8 py-6">
+              <Button variant="gold" size="lg" className="text-base px-8 py-6" onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}>
                 Join the Waitlist
               </Button>
-              <Button variant="outline-blue" size="lg" className="text-base px-8 py-6">
+              <Button variant="outline-blue" size="lg" className="text-base px-8 py-6" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>
                 See How It Works
               </Button>
             </div>
