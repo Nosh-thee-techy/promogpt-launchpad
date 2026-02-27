@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
+  const { theme, setTheme } = useTheme();
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -20,9 +24,22 @@ const Navbar = () => {
           <a href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
         </div>
 
-        <Button variant="gold" size="sm" className="text-sm" onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}>
-          Join Waitlist
-        </Button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors"
+            aria-label="Toggle dark mode"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-4 h-4 text-gold" strokeWidth={1.5} />
+            ) : (
+              <Moon className="w-4 h-4 text-primary" strokeWidth={1.5} />
+            )}
+          </button>
+          <Button variant="gold" size="sm" className="text-sm" onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}>
+            Join Waitlist
+          </Button>
+        </div>
       </div>
     </motion.nav>
   );
