@@ -56,7 +56,7 @@ const Waitlist = () => {
           className="text-center mb-10"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Become a <span className="gold-gradient-text">Founding Member</span>
+             Join the <span className="gold-gradient-text">Waitlist</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             Early access. Priority onboarding. Special launch pricing.
@@ -156,7 +156,7 @@ const Waitlist = () => {
             </div>
             <h3 className="text-2xl font-bold mb-2">You're officially on the list.</h3>
             <p className="text-muted-foreground">
-              We'll be in touch with your exclusive founding member access. Get ready.
+              We'll be in touch with your early access details. Get ready.
             </p>
           </DialogContent>
         </Dialog>

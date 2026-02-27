@@ -25,7 +25,7 @@ const Hero = () => {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary border border-border mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-sm font-medium text-muted-foreground">Early Access — Limited Founding Spots</span>
+              <span className="text-sm font-medium text-muted-foreground">Early Access — Limited Spots Available</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
@@ -39,7 +39,7 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="gold" size="lg" className="text-base px-8 py-6">
-                Join the Founding Waitlist
+                Join the Waitlist
               </Button>
               <Button variant="outline-blue" size="lg" className="text-base px-8 py-6">
                 See How It Works

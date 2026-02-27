@@ -19,8 +19,8 @@ const faqs = [
     answer: "PromoGPT supports all major marketing channels. You approve the platforms, and we handle posting. More integrations are added with each update.",
   },
   {
-    question: "What does 'Founding Member' access include?",
-    answer: "Founding Members get early access to the platform, priority onboarding support, special launch pricing locked in for life, and direct input into feature development.",
+    question: "What does early access include?",
+    answer: "Early access members get priority onboarding support, special launch pricing, and direct input into feature development.",
   },
   {
     question: "Is my data safe?",
