@@ -51,12 +51,18 @@ const Countdown = () => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="absolute left-[-10%] sm:left-[-5%] top-[10%] w-[50%] sm:w-[40%] md:w-[35%] max-w-[500px] pointer-events-none"
       >
+        {/* Pulsing glow behind brain */}
+        <motion.div
+          animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.9, 1.05, 0.9] }}
+          transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+          className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10"
+        />
         <motion.img
           animate={{ rotate: 360 }}
           transition={{ duration: 60, ease: "linear", repeat: Infinity }}
           src={countdownPlanet}
-          alt="Cinematic planet visualization"
-          className="w-full h-auto"
+          alt="PromoGPT AI marketing brain with digital circuits and campaign icons"
+          className="w-full h-auto drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]"
           loading="lazy"
         />
       </motion.div>
