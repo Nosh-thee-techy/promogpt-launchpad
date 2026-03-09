@@ -56,17 +56,15 @@ src/
 
 ## 📜 Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start development server |
+| `npm run build`   | Production build         |
 | `npm run preview` | Preview production build |
-| `npm run test` | Run tests |
-| `npm run lint` | Lint codebase |
+| `npm run test`    | Run tests                |
+| `npm run lint`    | Lint codebase            |
 
 ## 🌐 Deployment
-
-This project is built with [Lovable](https://lovable.dev). To deploy, open your Lovable project and click **Share → Publish**.
 
 To connect a custom domain, go to **Project → Settings → Domains**. [Learn more](https://docs.lovable.dev/features/custom-domain#custom-domain).
 
