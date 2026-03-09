@@ -5,9 +5,29 @@ import dashboardMockup from "@/assets/dashboard-mockup.png";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Massive outline text behind everything */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] font-heading font-bold tracking-tighter leading-none whitespace-nowrap"
+          style={{
+            WebkitTextStroke: "2px hsl(var(--primary) / 0.08)",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          PROMOGPT
+        </motion.h1>
+      </div>
+
       {/* Background glow */}
       <div className="absolute inset-0 blue-glow opacity-40" />
       <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl" />
+      
+      {/* Decorative blobs */}
+      <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-accent/5 blur-3xl animate-float" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
 
       <div className="container mx-auto section-padding relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

@@ -1,42 +1,50 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Store, Brain, Share2, TrendingUp } from "lucide-react";
-import { useRef } from "react";
 
 const steps = [
   {
     icon: Store,
     title: "Connect Your Business",
     description: "Link your product catalog, store, or inventory. We sync everything in minutes.",
+    span: "md:col-span-2 md:row-span-1",
   },
   {
     icon: Brain,
     title: "AI Builds Campaign Strategy",
     description: "PromoGPT analyzes your data and creates tailored marketing campaigns automatically.",
+    span: "md:col-span-1 md:row-span-2",
   },
   {
     icon: Share2,
     title: "We Post & Track Performance",
     description: "Campaigns go live on your approved platforms. Every click and conversion is tracked.",
+    span: "md:col-span-1 md:row-span-1",
   },
   {
     icon: TrendingUp,
     title: "You See Real Sales Impact",
     description: "Watch real revenue roll in with weekly intelligence updates and optimization.",
+    span: "md:col-span-1 md:row-span-1",
   },
 ];
 
 const HowItWorks = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const lineHeight = useTransform(scrollYProgress, [0.1, 0.8], ["0%", "100%"]);
-
   return (
-    <section ref={sectionRef} className="section-padding bg-secondary/30">
-      <div className="container mx-auto">
+    <section className="section-padding relative overflow-hidden">
+      {/* Outline text background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <span
+          className="text-[6rem] sm:text-[10rem] md:text-[14rem] font-heading font-bold tracking-tighter whitespace-nowrap"
+          style={{
+            WebkitTextStroke: "1.5px hsl(var(--accent) / 0.06)",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          HOW IT WORKS
+        </span>
+      </div>
+
+      <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,49 +55,47 @@ const HowItWorks = () => {
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             How It <span className="gold-gradient-text">Works</span>
           </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            From connection to conversion in four simple steps.
+          </p>
         </motion.div>
 
-        <div className="relative max-w-2xl mx-auto">
-          {/* Animated vertical timeline line */}
-          <div className="absolute left-5 sm:left-6 top-0 bottom-0 w-0.5 bg-border">
+        {/* Bento grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
+          {steps.map((step, index) => (
             <motion.div
-              className="w-full gold-gradient rounded-full origin-top"
-              style={{ height: lineHeight }}
-            />
-          </div>
-
-          <div className="space-y-0">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="relative flex items-start gap-6 py-8 border-b border-border/30 last:border-b-0"
+              key={step.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-8 hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 ${step.span}`}
+            >
+              {/* Step number watermark */}
+              <span
+                className="absolute -bottom-4 -right-2 text-[7rem] font-heading font-bold leading-none pointer-events-none select-none"
+                style={{
+                  WebkitTextStroke: "1px hsl(var(--accent) / 0.08)",
+                  WebkitTextFillColor: "transparent",
+                }}
               >
-                {/* Timeline dot */}
-                <motion.div
-                  className="relative z-10 shrink-0"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full gold-gradient flex items-center justify-center shadow-lg shadow-accent/20">
-                    <step.icon className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" strokeWidth={1.5} />
-                  </div>
-                </motion.div>
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
-                {/* Inline text — no card wrapper */}
-                <div className="pt-1">
-                  <span className="text-xs font-bold text-accent uppercase tracking-widest">Step {index + 1}</span>
-                  <h3 className="text-lg font-semibold mt-1 mb-1">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed max-w-md">{step.description}</p>
+              {/* Decorative gradient corner */}
+              <div className="absolute top-0 right-0 w-24 h-24 gold-gradient opacity-[0.06] rounded-bl-[80px] group-hover:opacity-[0.15] transition-opacity duration-300" />
+
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors duration-300">
+                  <step.icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <span className="text-xs font-bold text-accent uppercase tracking-widest">Step {index + 1}</span>
+                <h3 className="text-xl font-bold mt-2 mb-2 group-hover:text-accent transition-colors">{step.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
