@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import { Store, Brain, Share2, TrendingUp } from "lucide-react";
+import stepConnect from "@/assets/step-connect.png";
+import stepAi from "@/assets/step-ai.png";
+import stepPost from "@/assets/step-post.png";
+import stepSales from "@/assets/step-sales.png";
 
 const steps = [
   {
@@ -7,24 +11,29 @@ const steps = [
     title: "Connect Your Business",
     description: "Link your product catalog, store, or inventory. We sync everything in minutes.",
     span: "md:col-span-2 md:row-span-1",
+    image: stepConnect,
   },
   {
     icon: Brain,
     title: "AI Builds Campaign Strategy",
     description: "PromoGPT analyzes your data and creates tailored marketing campaigns automatically.",
     span: "md:col-span-1 md:row-span-2",
+    image: stepAi,
+    tallImage: true,
   },
   {
     icon: Share2,
     title: "We Post & Track Performance",
     description: "Campaigns go live on your approved platforms. Every click and conversion is tracked.",
     span: "md:col-span-1 md:row-span-1",
+    image: stepPost,
   },
   {
     icon: TrendingUp,
     title: "You See Real Sales Impact",
     description: "Watch real revenue roll in with weekly intelligence updates and optimization.",
     span: "md:col-span-1 md:row-span-1",
+    image: stepSales,
   },
 ];
 
@@ -52,6 +61,7 @@ const HowItWorks = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
+          <span className="inline-block text-xs font-bold text-accent uppercase tracking-widest mb-3 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20">Process</span>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             How It <span className="gold-gradient-text">Works</span>
           </h2>
@@ -70,29 +80,44 @@ const HowItWorks = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -4, scale: 1.01 }}
-              className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-8 hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 ${step.span}`}
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 ${step.span}`}
             >
-              {/* Step number watermark */}
-              <span
-                className="absolute -bottom-4 -right-2 text-[7rem] font-heading font-bold leading-none pointer-events-none select-none"
-                style={{
-                  WebkitTextStroke: "1px hsl(var(--accent) / 0.08)",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              {/* Decorative gradient corner */}
-              <div className="absolute top-0 right-0 w-24 h-24 gold-gradient opacity-[0.06] rounded-bl-[80px] group-hover:opacity-[0.15] transition-opacity duration-300" />
-
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors duration-300">
-                  <step.icon className="w-6 h-6 text-accent" strokeWidth={1.5} />
+              {/* Image */}
+              <div className={`relative overflow-hidden ${(step as any).tallImage ? "h-48 md:h-56" : "h-36 sm:h-44"}`}>
+                <img
+                  src={step.image}
+                  alt={step.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                
+                {/* Step badge over image */}
+                <div className="absolute top-3 left-4 flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg gold-gradient flex items-center justify-center shadow-lg">
+                    <step.icon className="w-4 h-4 text-foreground" strokeWidth={1.5} />
+                  </div>
+                  <span className="text-xs font-bold text-accent uppercase tracking-widest bg-card/80 backdrop-blur-sm px-2 py-1 rounded-md border border-border/50">Step {index + 1}</span>
                 </div>
-                <span className="text-xs font-bold text-accent uppercase tracking-widest">Step {index + 1}</span>
-                <h3 className="text-xl font-bold mt-2 mb-2 group-hover:text-accent transition-colors">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+              </div>
+
+              {/* Text content */}
+              <div className="p-5 sm:p-6 relative">
+                {/* Step number watermark */}
+                <span
+                  className="absolute -bottom-4 -right-2 text-[7rem] font-heading font-bold leading-none pointer-events-none select-none"
+                  style={{
+                    WebkitTextStroke: "1px hsl(var(--accent) / 0.08)",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="relative z-10">
+                  <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-accent transition-colors">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+                </div>
               </div>
             </motion.div>
           ))}

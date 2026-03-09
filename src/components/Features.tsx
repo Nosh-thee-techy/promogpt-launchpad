@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import { Database, Megaphone, TrendingUp, BarChart3 } from "lucide-react";
+import featureData from "@/assets/feature-data.png";
+import featureCampaign from "@/assets/feature-campaign.png";
+import featureTracking from "@/assets/feature-tracking.png";
+import featureInsights from "@/assets/feature-insights.png";
 
 const features = [
   {
@@ -7,24 +11,28 @@ const features = [
     title: "Connect Product Data",
     description: "Seamlessly sync your product catalog and let our AI understand your brand, pricing, and audience.",
     span: "sm:col-span-2 lg:col-span-1 lg:row-span-2",
+    image: featureData,
   },
   {
     icon: Megaphone,
     title: "AI Campaign Creation & Posting",
     description: "We create, schedule, and publish marketing campaigns across your approved platforms automatically.",
     span: "sm:col-span-2 lg:col-span-2",
+    image: featureCampaign,
   },
   {
     icon: TrendingUp,
     title: "Real Sales Conversion Tracking",
     description: "Track engagement-to-sale pipelines with real attribution — not vanity metrics.",
     span: "sm:col-span-2 lg:col-span-1",
+    image: featureTracking,
   },
   {
     icon: BarChart3,
     title: "Weekly Intelligent Business Updates",
     description: "Receive strategic insights every week with actionable recommendations to grow revenue.",
     span: "sm:col-span-2 lg:col-span-2",
+    image: featureInsights,
   },
 ];
 
@@ -62,28 +70,39 @@ const Features = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -4 }}
-              className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-7 hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 ${feature.span}`}
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 ${feature.span}`}
             >
-              {/* Decorative corner accent */}
-              <div className="absolute top-0 right-0 w-20 h-20 gold-gradient opacity-[0.07] rounded-bl-[60px] group-hover:opacity-[0.15] transition-opacity duration-300" />
-
-              {/* Number watermark */}
-              <span
-                className="absolute -bottom-2 -right-1 text-[5rem] font-heading font-bold leading-none pointer-events-none select-none"
-                style={{
-                  WebkitTextStroke: "1px hsl(var(--primary) / 0.06)",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <div className="relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mb-4 group-hover:bg-accent/20 transition-colors duration-300">
-                  <feature.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors duration-300" strokeWidth={1.5} />
+              {/* Image area */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                
+                {/* Icon floating over image */}
+                <div className="absolute bottom-3 left-5 w-10 h-10 rounded-lg bg-card/80 backdrop-blur-sm flex items-center justify-center border border-border/50">
+                  <feature.icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+              </div>
+
+              {/* Text content */}
+              <div className="p-5 sm:p-6 relative">
+                {/* Number watermark */}
+                <span
+                  className="absolute -bottom-2 -right-1 text-[5rem] font-heading font-bold leading-none pointer-events-none select-none"
+                  style={{
+                    WebkitTextStroke: "1px hsl(var(--primary) / 0.06)",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <h3 className="text-lg font-semibold mb-2 relative z-10">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed relative z-10">{feature.description}</p>
               </div>
             </motion.div>
           ))}
