@@ -43,6 +43,7 @@ const Footer = () => {
           </p>
           <div className="flex gap-6">
             <a href="mailto:promogpt.ke@gmail.com" className="text-xs text-muted-foreground hover:text-primary transition-colors">Contact</a>
+            <a href="https://calendly.com/promogpt-ke" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Book a Demo</a>
             <a href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">Privacy</a>
             <a href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">Terms</a>
           </div>

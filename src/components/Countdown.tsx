@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const LAUNCH_DATE = new Date(Date.now() + 6 * 24 * 60 * 60 * 1000);
+const LAUNCH_DATE = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
 
 const CountdownUnit = ({ value, label }: { value: number; label: string }) => {
   const [prevValue, setPrevValue] = useState(value);

@@ -29,27 +29,59 @@ const features = [
   },
 ];
 
-const AfricaMapSilhouette = () => (
+const AfricaMap = () => (
   <svg
-    viewBox="0 0 500 600"
-    className="w-full max-w-[200px] sm:max-w-[280px] mx-auto opacity-[0.08] dark:opacity-[0.12]"
+    viewBox="0 0 600 700"
+    className="w-full max-w-[220px] sm:max-w-[300px] mx-auto cursor-zoom-in"
     fill="none"
-    stroke="hsl(var(--primary))"
-    strokeWidth="1.5"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M250 30 C230 25, 200 30, 185 45 C170 55, 160 50, 145 55 C130 60, 120 75, 125 90 C128 100, 135 105, 130 120 C125 135, 115 140, 110 155 C105 170, 110 185, 120 195 C130 205, 125 215, 120 230 C115 250, 105 265, 100 280 C95 295, 90 310, 95 330 C98 345, 105 355, 110 370 C115 385, 120 400, 130 415 C140 430, 155 440, 165 455 C175 470, 185 480, 195 490 C205 498, 215 500, 225 495 C235 490, 240 480, 250 475 C260 470, 270 465, 280 455 C290 445, 295 430, 300 415 C305 400, 315 385, 325 370 C335 355, 340 340, 340 325 C340 310, 345 295, 350 280 C355 265, 365 250, 370 235 C375 220, 370 205, 360 195 C350 185, 345 175, 340 160 C335 145, 340 130, 345 115 C348 105, 345 95, 340 85 C335 75, 325 65, 315 55 C305 48, 290 42, 280 38 C270 34, 260 32, 250 30Z" />
-    <circle cx="330" cy="195" r="6" fill="hsl(var(--gold))" stroke="none" opacity="0.8" />
-    <circle cx="345" cy="315" r="6" fill="hsl(var(--gold))" stroke="none" opacity="0.8" />
-    <circle cx="280" cy="455" r="6" fill="hsl(var(--gold))" stroke="none" opacity="0.8" />
-    <circle cx="300" cy="250" r="4" fill="hsl(var(--gold))" stroke="none" opacity="0.5" />
-    <circle cx="260" cy="170" r="4" fill="hsl(var(--gold))" stroke="none" opacity="0.5" />
+    {/* Realistic Africa outline */}
+    <path
+      d="M310 45 C295 42, 280 40, 265 38 C250 36, 235 38, 220 42 C205 46, 195 52, 185 60 C175 68, 168 72, 158 74 C148 76, 138 74, 128 78 C118 82, 112 90, 108 100 C104 110, 102 118, 105 128 C108 138, 115 145, 118 155 C121 165, 118 172, 115 182 C112 192, 108 200, 105 210 C102 220, 98 228, 95 238 C92 248, 88 258, 85 270 C82 282, 80 292, 82 305 C84 318, 88 328, 92 340 C96 352, 100 362, 105 375 C110 388, 112 398, 115 412 C118 426, 122 438, 128 452 C134 466, 142 478, 150 490 C158 502, 168 512, 178 520 C188 528, 198 534, 210 538 C222 542, 232 540, 242 535 C252 530, 258 522, 265 515 C272 508, 278 502, 286 495 C294 488, 300 480, 308 472 C316 464, 322 455, 328 445 C334 435, 340 425, 345 412 C350 399, 352 388, 355 375 C358 362, 362 350, 365 338 C368 326, 372 315, 375 302 C378 289, 380 278, 382 265 C384 252, 388 240, 390 228 C392 216, 390 205, 385 195 C380 185, 372 178, 365 170 C358 162, 352 155, 348 145 C344 135, 342 125, 345 115 C348 105, 352 98, 350 88 C348 78, 342 70, 335 62 C328 54, 320 48, 310 45Z"
+      stroke="hsl(var(--primary))"
+      strokeWidth="2"
+      fill="hsl(var(--primary))"
+      fillOpacity="0.05"
+      className="transition-all duration-300 hover:fill-[hsl(var(--primary)/0.12)]"
+    />
+    {/* Madagascar */}
+    <path
+      d="M420 395 C418 388, 415 382, 412 378 C409 374, 405 372, 402 375 C399 378, 398 385, 400 392 C402 399, 405 408, 408 418 C411 428, 414 435, 416 440 C418 445, 420 442, 421 436 C422 430, 422 420, 422 410 C422 402, 421 398, 420 395Z"
+      stroke="hsl(var(--primary))"
+      strokeWidth="1.5"
+      fill="hsl(var(--primary))"
+      fillOpacity="0.05"
+    />
+
+    {/* City markers */}
+    {/* Cairo */}
+    <circle cx="345" cy="105" r="5" fill="hsl(var(--accent))" opacity="0.9" />
+    <circle cx="345" cy="105" r="9" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.4" className="animate-ping" style={{ animationDuration: "3s" }} />
+
+    {/* Lagos */}
+    <circle cx="155" cy="310" r="5" fill="hsl(var(--accent))" opacity="0.9" />
+    <circle cx="155" cy="310" r="9" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.4" className="animate-ping" style={{ animationDuration: "2.5s" }} />
+
+    {/* Nairobi */}
+    <circle cx="365" cy="355" r="5" fill="hsl(var(--accent))" opacity="0.9" />
+    <circle cx="365" cy="355" r="9" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.4" className="animate-ping" style={{ animationDuration: "2.8s" }} />
+
+    {/* Johannesburg */}
+    <circle cx="310" cy="490" r="5" fill="hsl(var(--accent))" opacity="0.9" />
+    <circle cx="310" cy="490" r="9" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" opacity="0.4" className="animate-ping" style={{ animationDuration: "3.2s" }} />
+
+    {/* Accra */}
+    <circle cx="135" cy="295" r="4" fill="hsl(var(--accent))" opacity="0.6" />
+
+    {/* Addis Ababa */}
+    <circle cx="360" cy="280" r="4" fill="hsl(var(--accent))" opacity="0.6" />
   </svg>
 );
 
 const BuiltForAfrica = () => {
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Subtle pattern */}
       <div
         className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
         style={{
@@ -75,9 +107,7 @@ const BuiltForAfrica = () => {
           </p>
         </motion.div>
 
-        {/* Split layout: map left, feature list right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
-          {/* Map visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -86,24 +116,23 @@ const BuiltForAfrica = () => {
             className="flex justify-center"
           >
             <div className="relative">
-              <AfricaMapSilhouette />
-              {/* Hub labels */}
-              <div className="absolute top-[30%] right-[10%] flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <AfricaMap />
+              {/* Labels */}
+              <div className="absolute top-[14%] right-[18%] flex items-center gap-1.5">
+                <span className="text-xs font-medium text-muted-foreground">Cairo</span>
+              </div>
+              <div className="absolute top-[42%] left-[5%] flex items-center gap-1.5">
                 <span className="text-xs font-medium text-muted-foreground">Lagos</span>
               </div>
-              <div className="absolute top-[50%] right-[5%] flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <div className="absolute top-[49%] right-[12%] flex items-center gap-1.5">
                 <span className="text-xs font-medium text-muted-foreground">Nairobi</span>
               </div>
-              <div className="absolute bottom-[15%] right-[20%] flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <div className="absolute bottom-[22%] right-[28%] flex items-center gap-1.5">
                 <span className="text-xs font-medium text-muted-foreground">Johannesburg</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Icon strip list — not cards */}
           <div className="space-y-0">
             {features.map((feature, index) => (
               <motion.div
