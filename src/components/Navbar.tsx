@@ -35,7 +35,12 @@ const Navbar = () => {
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              key={link.href}
+              href={link.href}
+              {...((link as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className={`text-sm transition-colors ${(link as any).external ? "text-accent hover:text-accent/80 font-medium" : "text-muted-foreground hover:text-foreground"}`}
+            >
               {link.label}
             </a>
           ))}
