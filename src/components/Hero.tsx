@@ -87,7 +87,7 @@ const Hero = () => {
               <img
                 src={hero3d}
                 alt="PromoGPT 3D marketing analytics city visualization"
-                className="w-full max-w-md lg:max-w-lg h-auto drop-shadow-2xl"
+                className="w-full max-w-lg lg:max-w-2xl h-auto drop-shadow-2xl"
                 loading="eager"
               />
             </motion.div>
