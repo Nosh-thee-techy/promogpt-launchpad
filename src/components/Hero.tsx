@@ -41,8 +41,13 @@ const Hero = () => {
               <Button variant="gold" size="lg" className="text-base px-8 py-6" onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}>
                 Join the Waitlist
               </Button>
-              <Button variant="outline-blue" size="lg" className="text-base px-8 py-6" onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}>
-                See How It Works
+              <Button
+                variant="outline-blue"
+                size="lg"
+                className="text-base px-8 py-6"
+                onClick={() => window.open("https://calendly.com/promogpt-ke", "_blank")}
+              >
+                Book a Demo
               </Button>
             </div>
           </motion.div>
