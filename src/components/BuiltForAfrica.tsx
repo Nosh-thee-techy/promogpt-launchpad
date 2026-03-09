@@ -103,9 +103,9 @@ const CityMarker = ({
       onMouseLeave={() => setHovered(false)}
     >
       {/* Pulse ring */}
-      <span className="absolute -inset-2 rounded-full border border-accent/40 animate-ping" style={{ animationDuration: "3s" }} />
+      <span className="absolute -inset-2 rounded-full border border-cyan-400/50 animate-ping" style={{ animationDuration: "3s" }} />
       {/* Dot */}
-      <span className="relative block w-3 h-3 rounded-full bg-accent shadow-lg shadow-accent/30 cursor-pointer" />
+      <span className="relative block w-3 h-3 rounded-full bg-cyan-400 city-marker-neon cursor-pointer border border-cyan-300/60" />
 
       {/* Tooltip */}
       <AnimatePresence>
@@ -178,7 +178,7 @@ const BuiltForAfrica = () => {
             transition={{ duration: 0.7 }}
             className="flex justify-center"
           >
-            <div className="relative cursor-zoom-in">
+            <div className="relative cursor-zoom-in africa-map-neon rounded-xl p-1">
               <img
                 src={africaMap}
                 alt="Map of Africa showing countries and major cities"
