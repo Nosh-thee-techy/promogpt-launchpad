@@ -46,7 +46,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-primary/10 transition-colors"
@@ -58,6 +58,15 @@ const Navbar = () => {
               <Moon className="w-4 h-4 text-primary" strokeWidth={1.5} />
             )}
           </button>
+          {/* Book a Demo - visible on mobile too */}
+          <Button
+            variant="outline-blue"
+            size="sm"
+            className="text-xs sm:text-sm px-3 sm:px-4"
+            onClick={() => window.open("https://calendly.com/promogpt-ke", "_blank")}
+          >
+            Book a Demo
+          </Button>
           <Button variant="gold" size="sm" className="hidden sm:inline-flex text-sm" onClick={scrollToWaitlist}>
             Join Waitlist
           </Button>

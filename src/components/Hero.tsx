@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import dashboardMockup from "@/assets/dashboard-mockup.png";
+import hero3d from "@/assets/hero-3d.png";
 
 const Hero = () => {
   return (
@@ -21,13 +21,13 @@ const Hero = () => {
         </motion.h1>
       </div>
 
-      {/* Background glow */}
-      <div className="absolute inset-0 blue-glow opacity-40" />
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl" />
-      
+      {/* Background glow — hidden in dark mode */}
+      <div className="absolute inset-0 blue-glow opacity-40 dark:opacity-0" />
+      <div className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl dark:bg-primary/3" />
+
       {/* Decorative blobs */}
       <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-accent/5 blur-3xl animate-float" />
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl dark:bg-primary/3" />
 
       <div className="container mx-auto section-padding relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -72,25 +72,27 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right dashboard mockup */}
+          {/* Right 3D illustration */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+            className="relative flex items-center justify-center"
           >
-            <div className="relative animate-float">
-              <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src={dashboardMockup}
-                  alt="PromoGPT AI Marketing Dashboard showing campaign performance analytics"
-                  className="w-full h-auto"
-                  loading="eager"
-                />
-              </div>
-              {/* Decorative glow behind */}
-              <div className="absolute -inset-4 bg-primary/10 rounded-3xl blur-2xl -z-10" />
-            </div>
+            <motion.div
+              animate={{ rotateY: [0, 360] }}
+              transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+              style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+            >
+              <img
+                src={hero3d}
+                alt="PromoGPT 3D marketing analytics city visualization"
+                className="w-full max-w-md lg:max-w-lg h-auto drop-shadow-2xl"
+                loading="eager"
+              />
+            </motion.div>
+            {/* Glow behind 3D image */}
+            <div className="absolute inset-0 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl -z-10 scale-75" />
           </motion.div>
         </div>
       </div>
