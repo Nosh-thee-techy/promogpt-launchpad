@@ -49,7 +49,7 @@ const Countdown = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute left-[-10%] sm:left-[-5%] top-[10%] w-[50%] sm:w-[40%] md:w-[35%] max-w-[500px] pointer-events-none"
+        className="absolute left-[-15%] sm:left-[-8%] md:left-[-5%] top-[15%] sm:top-[12%] md:top-[10%] w-[35%] sm:w-[35%] md:w-[30%] lg:w-[28%] max-w-[420px] pointer-events-none"
       >
         {/* Pulsing glow behind brain */}
         <motion.div
