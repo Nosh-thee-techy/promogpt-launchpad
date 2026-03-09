@@ -49,9 +49,11 @@ const Countdown = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute left-[-10%] sm:left-[-5%] top-1/2 -translate-y-1/2 w-[50%] sm:w-[40%] md:w-[35%] max-w-[500px] pointer-events-none"
+        className="absolute left-[-10%] sm:left-[-5%] top-[10%] w-[50%] sm:w-[40%] md:w-[35%] max-w-[500px] pointer-events-none"
       >
-        <img
+        <motion.img
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, ease: "linear", repeat: Infinity }}
           src={countdownPlanet}
           alt="Cinematic planet visualization"
           className="w-full h-auto"
