@@ -8,6 +8,7 @@ import HowItWorks from "@/components/HowItWorks";
 import WhyWeExist from "@/components/WhyWeExist";
 import Waitlist from "@/components/Waitlist";
 import FAQ from "@/components/FAQ";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -25,6 +26,7 @@ const Index = () => {
         <div id="how-it-works">
           <HowItWorks />
         </div>
+        <Testimonials />
         <WhyWeExist />
         <Waitlist />
         <div id="faq">
