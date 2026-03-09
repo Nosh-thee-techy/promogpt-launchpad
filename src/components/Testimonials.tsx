@@ -45,6 +45,19 @@ const Testimonials = () => {
       {/* Subtle background */}
       <div className="absolute inset-0 bg-secondary/30 dark:bg-secondary/10" />
 
+      {/* Outline text background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <span
+          className="text-[6rem] sm:text-[10rem] md:text-[14rem] font-heading font-bold tracking-tighter whitespace-nowrap"
+          style={{
+            WebkitTextStroke: "1.5px hsl(var(--primary) / 0.04)",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          TESTIMONIALS
+        </span>
+      </div>
+
       <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,6 +66,7 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
+          <span className="inline-block text-xs font-bold text-accent uppercase tracking-widest mb-3 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20">Social Proof</span>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Trusted by <span className="gold-gradient-text">African Entrepreneurs</span>
           </h2>
@@ -77,8 +91,8 @@ const Testimonials = () => {
           ))}
         </motion.div>
 
-        {/* Testimonial cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {/* Testimonial cards — bento style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
           {testimonials.map((t, index) => (
             <motion.div
               key={t.name}
@@ -86,8 +100,12 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass-card rounded-2xl p-6 border border-border/50 relative group hover:border-accent/30 transition-colors"
+              whileHover={{ y: -4 }}
+              className={`glass-card rounded-2xl p-6 border border-border/50 relative group hover:border-accent/30 transition-all duration-300 overflow-hidden ${index === 0 ? "md:row-span-2" : ""}`}
             >
+              {/* Decorative gradient */}
+              <div className="absolute top-0 right-0 w-28 h-28 gold-gradient opacity-[0.05] rounded-bl-[80px] group-hover:opacity-[0.12] transition-opacity duration-300" />
+              
               <Quote className="absolute top-4 right-4 w-8 h-8 text-accent/10 group-hover:text-accent/20 transition-colors" />
 
               {/* Stars */}
@@ -97,12 +115,11 @@ const Testimonials = () => {
                 ))}
               </div>
 
-              <p className="text-sm sm:text-base text-foreground leading-relaxed mb-5">
+              <p className={`text-sm sm:text-base text-foreground leading-relaxed mb-5 ${index === 0 ? "text-base sm:text-lg" : ""}`}>
                 "{t.quote}"
               </p>
 
               <div className="flex items-center gap-3">
-                {/* Avatar placeholder */}
                 <div className="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center">
                   <span className="text-sm font-bold text-accent">
                     {t.name.split(" ").map((n) => n[0]).join("")}

@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import MarqueeTicker from "@/components/MarqueeTicker";
 import Countdown from "@/components/Countdown";
 import Features from "@/components/Features";
 import BuiltForAfrica from "@/components/BuiltForAfrica";
@@ -17,6 +18,7 @@ const Index = () => {
       <Navbar />
       <main className="pt-16">
         <Hero />
+        <MarqueeTicker />
         <Countdown />
         <div id="features">
           <Features />
@@ -26,6 +28,7 @@ const Index = () => {
         <div id="how-it-works">
           <HowItWorks />
         </div>
+        <MarqueeTicker />
         <Testimonials />
         <WhyWeExist />
         <Waitlist />

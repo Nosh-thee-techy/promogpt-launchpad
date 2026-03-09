@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { CheckCircle2 } from "lucide-react";
 import { z } from "zod";
-import { toast } from "sonner";
 
 const waitlistSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -37,7 +36,6 @@ const Waitlist = () => {
     }
 
     setSubmitting(true);
-    // Simulate submission
     setTimeout(() => {
       setSubmitting(false);
       setShowSuccess(true);
@@ -46,8 +44,25 @@ const Waitlist = () => {
   };
 
   return (
-    <section id="waitlist" className="section-padding">
-      <div className="container mx-auto max-w-xl">
+    <section id="waitlist" className="section-padding relative overflow-hidden">
+      {/* Outline text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <span
+          className="text-[6rem] sm:text-[10rem] md:text-[14rem] font-heading font-bold tracking-tighter whitespace-nowrap"
+          style={{
+            WebkitTextStroke: "1.5px hsl(var(--accent) / 0.06)",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          JOIN US
+        </span>
+      </div>
+
+      {/* Decorative blobs */}
+      <div className="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-accent/5 blur-3xl" />
+      <div className="absolute -bottom-32 -right-32 w-80 h-80 rounded-full bg-primary/5 blur-3xl" />
+
+      <div className="container mx-auto max-w-xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,6 +70,7 @@ const Waitlist = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
+          <span className="inline-block text-xs font-bold text-accent uppercase tracking-widest mb-3 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20">Early Access</span>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
              Join the <span className="gold-gradient-text">Waitlist</span>
           </h2>
@@ -69,7 +85,7 @@ const Waitlist = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
           onSubmit={handleSubmit}
-          className="glass-card rounded-2xl p-6 sm:p-8 space-y-5"
+          className="glass-card rounded-2xl p-6 sm:p-8 space-y-5 border border-border/50"
         >
           <div>
             <Label htmlFor="name">Name</Label>
@@ -146,7 +162,6 @@ const Waitlist = () => {
           </Button>
         </motion.form>
 
-        {/* Success modal */}
         <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
           <DialogContent className="text-center py-10 max-w-sm">
             <div className="flex justify-center mb-4">
