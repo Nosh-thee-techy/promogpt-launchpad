@@ -1,23 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const LAUNCH_DATE = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
+// Fixed launch date: 14 days from first visit, persisted in localStorage
+const getLaunchDate = (): number => {
+  const stored = localStorage.getItem("promogpt_launch_date");
+  if (stored) {
+    return parseInt(stored, 10);
+  }
+  const date = Date.now() + 14 * 24 * 60 * 60 * 1000;
+  localStorage.setItem("promogpt_launch_date", String(date));
+  return date;
+};
 
 const CountdownUnit = ({ value, label }: { value: number; label: string }) => {
-  const [prevValue, setPrevValue] = useState(value);
-  const [flip, setFlip] = useState(false);
-
-  useEffect(() => {
-    if (value !== prevValue) {
-      setFlip(true);
-      const timer = setTimeout(() => {
-        setPrevValue(value);
-        setFlip(false);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [value, prevValue]);
-
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="relative glass-card rounded-xl w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 flex items-center justify-center border-2 border-primary/20">
@@ -42,12 +37,12 @@ const CountdownUnit = ({ value, label }: { value: number; label: string }) => {
 };
 
 const Countdown = () => {
+  const launchDate = useRef(getLaunchDate());
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
     const calculate = () => {
-      const now = new Date().getTime();
-      const distance = LAUNCH_DATE.getTime() - now;
+      const distance = launchDate.current - Date.now();
       if (distance <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
       return {
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
