@@ -13,12 +13,17 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex flex-col items-center sm:items-start gap-2">
-            <img
-              src="/promogpt-logo.png"
-              alt="Promogpt logo"
-              className="h-7 w-auto"
-              loading="lazy"
-            />
+            <div className="flex items-center gap-2">
+              <img
+                src="/promogpt-logo.png"
+                alt="Promogpt logo"
+                className="h-7 w-auto"
+                loading="lazy"
+              />
+              <span className="text-base font-heading font-semibold tracking-tight">
+                Promogpt
+              </span>
+            </div>
             <p className="text-sm text-muted-foreground mt-1">
               The future of SME marketing starts here.
             </p>

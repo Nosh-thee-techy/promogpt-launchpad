@@ -49,6 +49,9 @@ const Navbar = () => {
             className="h-8 w-auto"
             loading="lazy"
           />
+          <span className="text-lg font-heading font-semibold tracking-tight">
+            Promogpt
+          </span>
         </a>
 
         {/* Desktop nav */}
