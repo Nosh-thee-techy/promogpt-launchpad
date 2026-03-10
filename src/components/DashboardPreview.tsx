@@ -29,7 +29,7 @@ const DashboardPreview = () => {
         >
           {/* Phone mockup with live-style KPIs, mini chart, and table */}
           <div className="flex justify-center">
-            <div className="relative w-full max-w-sm aspect-[9/19] rounded-[2.5rem] border border-border bg-gradient-to-b from-[#050814] via-[#050814] to-[#050814] shadow-2xl px-4 pt-6 pb-5 overflow-hidden">
+            <div className="relative w-full max-w-sm aspect-[9/19] rounded-[2.5rem] border border-border bg-gradient-to-b from-[#050814] via-[#050814] to-[#050814] shadow-2xl px-4 pt-7 pb-6 overflow-hidden">
               {/* Outer glow */}
               <div className="pointer-events-none absolute -inset-8 bg-primary/10 blur-3xl -z-10" />
 
@@ -51,7 +51,7 @@ const DashboardPreview = () => {
               </div>
 
               {/* Tiny KPI row */}
-              <div className="grid grid-cols-3 gap-2 mb-4">
+              <div className="grid grid-cols-3 gap-2 mb-5">
                 {[
                   { label: "Revenue", value: "$16.8k" },
                   { label: "Conv.", value: "12.4%" },
@@ -68,12 +68,12 @@ const DashboardPreview = () => {
               </div>
 
               {/* Tiny sparkline-style chart */}
-              <div className="mb-4">
+              <div className="mb-5">
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-[10px] text-muted-foreground">Last 8 weeks</p>
                   <p className="text-[10px] text-emerald-300 font-semibold">+27% ↑</p>
                 </div>
-                <div className="relative h-14 rounded-xl bg-background/40 overflow-hidden">
+                <div className="relative h-16 rounded-xl bg-background/40 overflow-hidden">
                   <svg viewBox="0 0 100 40" className="w-full h-full">
                     <defs>
                       <linearGradient id="phoneSpark" x1="0" y1="0" x2="0" y2="1">
@@ -98,7 +98,7 @@ const DashboardPreview = () => {
               </div>
 
               {/* Post → Click → Cart → Purchase table */}
-              <div className="space-y-3 mb-4">
+              <div className="space-y-4 mb-5">
                 {[
                   { label: "Posts Published", value: "1.2K", width: "100%" },
                   { label: "Clicks Generated", value: "8.4K", width: "68%" },
@@ -129,7 +129,7 @@ const DashboardPreview = () => {
               </div>
 
               {/* Footer hint and quick actions to fill remaining space */}
-              <div className="mt-3 pt-3 border-t border-border/40 flex items-center justify-between gap-3">
+              <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between gap-3">
                 <p className="text-[10px] text-muted-foreground">
                   Post → Click → Cart → Purchase — tracked in one clean view.
                 </p>
