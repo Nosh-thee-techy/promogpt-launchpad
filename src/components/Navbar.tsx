@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
+import logo from "@/assets/promogpt-logo.png";
 
 const navLinks = [
   { href: "#how-it-works", label: "How It Works" },
@@ -42,9 +43,14 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <span className="text-xl font-heading font-bold">
-          Promo<span className="gold-gradient-text">GPT</span>
-        </span>
+        <div className="flex items-center gap-2">
+          <img
+            src={logo}
+            alt="Promogpt logo"
+            className="h-8 w-auto"
+            loading="lazy"
+          />
+        </div>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">

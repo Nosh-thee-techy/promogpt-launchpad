@@ -1,4 +1,5 @@
 import { Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+import logo from "@/assets/promogpt-logo.png";
 
 const socials = [
   { href: "https://www.linkedin.com/company/promogpt", icon: Linkedin, label: "LinkedIn" },
@@ -12,10 +13,13 @@ const Footer = () => {
     <footer className="border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <span className="text-xl font-heading font-bold">
-              Promo<span className="gold-gradient-text">GPT</span>
-            </span>
+          <div className="flex flex-col items-center sm:items-start gap-2">
+            <img
+              src={logo}
+              alt="Promogpt logo"
+              className="h-7 w-auto"
+              loading="lazy"
+            />
             <p className="text-sm text-muted-foreground mt-1">
               The future of SME marketing starts here.
             </p>
