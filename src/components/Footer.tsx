@@ -1,5 +1,4 @@
 import { Twitter, Linkedin, Instagram, Mail } from "lucide-react";
-import logo from "@/assets/promogpt-logo.png";
 
 const socials = [
   { href: "https://www.linkedin.com/company/promogpt", icon: Linkedin, label: "LinkedIn" },
@@ -15,7 +14,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex flex-col items-center sm:items-start gap-2">
             <img
-              src={logo}
+              src="/promogpt-logo.png"
               alt="Promogpt logo"
               className="h-7 w-auto"
               loading="lazy"
