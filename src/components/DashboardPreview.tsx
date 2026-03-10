@@ -30,19 +30,23 @@ const DashboardPreview = () => {
           {/* KPI cards */}
           {/* Phone mockup with Post → Click → Purchase table */}
           <div className="flex justify-center">
-            <div className="relative w-full max-w-sm aspect-[9/19] rounded-[2.5rem] border border-border bg-gradient-to-b from-background/90 via-background to-background/95 shadow-2xl px-4 pt-6 pb-5">
+            <div className="relative w-full max-w-sm aspect-[9/19] rounded-[2.5rem] border border-border bg-gradient-to-b from-[#050814] via-[#050814] to-[#050814] shadow-2xl px-4 pt-6 pb-5 overflow-hidden">
+              {/* Outer glow */}
+              <div className="pointer-events-none absolute -inset-8 bg-primary/10 blur-3xl -z-10" />
+
               {/* Notch */}
               <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-5 rounded-full bg-secondary/70" />
 
               {/* Header */}
               <div className="flex items-center justify-between mb-6 mt-4">
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                    PromoGPT
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/80">
+                    Promogpt
                   </p>
-                  <p className="text-sm font-semibold">Revenue Flow</p>
+                  <p className="text-sm font-semibold text-foreground">Revenue Flow</p>
                 </div>
-                <span className="text-[11px] px-2 py-1 rounded-full bg-accent/10 text-accent font-semibold">
+                <span className="text-[11px] px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-300 font-semibold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   Live
                 </span>
               </div>
@@ -57,13 +61,13 @@ const DashboardPreview = () => {
                 ].map((step) => (
                   <div
                     key={step.label}
-                    className="rounded-xl bg-secondary/60 border border-border/60 px-3 py-2.5"
+                    className="rounded-xl bg-secondary/70 border border-border/60 px-3 py-2.5"
                   >
                     <div className="flex items-center justify-between mb-1">
                       <p className="text-[11px] text-muted-foreground">
                         {step.label}
                       </p>
-                      <p className="text-xs font-semibold">{step.value}</p>
+                      <p className="text-xs font-semibold text-foreground">{step.value}</p>
                     </div>
                     <div className="h-2.5 rounded-full bg-background/60 overflow-hidden">
                       <motion.div
@@ -80,7 +84,7 @@ const DashboardPreview = () => {
 
               {/* Footer hint */}
               <p className="mt-5 text-[10px] text-muted-foreground text-center">
-                Post → Click → Cart → Purchase, tracked in one view.
+                Post → Click → Cart → Purchase — tracked in one clean view.
               </p>
             </div>
           </div>

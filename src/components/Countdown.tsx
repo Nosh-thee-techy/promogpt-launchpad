@@ -48,8 +48,8 @@ const Countdown = () => {
       />
 
       {/* Static brain planet, softened so it doesn't block text */}
-      <div className="absolute inset-y-0 left-[-10%] sm:left-0 flex items-center pointer-events-none">
-        <div className="relative w-[55vw] max-w-[360px] opacity-50 sm:opacity-70 mix-blend-screen">
+      <div className="absolute inset-y-0 left-[-16%] sm:left-[-10%] flex items-center pointer-events-none">
+        <div className="relative w-[45vw] max-w-[320px] opacity-30 sm:opacity-55 mix-blend-screen">
           <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10" />
           <img
             src={countdownPlanet}
