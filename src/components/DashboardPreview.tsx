@@ -98,7 +98,7 @@ const DashboardPreview = () => {
               </div>
 
               {/* Post → Click → Cart → Purchase table */}
-              <div className="space-y-3">
+              <div className="space-y-3 mb-4">
                 {[
                   { label: "Posts Published", value: "1.2K", width: "100%" },
                   { label: "Clicks Generated", value: "8.4K", width: "68%" },
@@ -128,10 +128,22 @@ const DashboardPreview = () => {
                 ))}
               </div>
 
-              {/* Footer hint */}
-              <p className="mt-5 text-[10px] text-muted-foreground text-center">
-                Post → Click → Cart → Purchase — tracked in one clean view.
-              </p>
+              {/* Footer hint and quick actions to fill remaining space */}
+              <div className="mt-3 pt-3 border-t border-border/40 flex items-center justify-between gap-3">
+                <p className="text-[10px] text-muted-foreground">
+                  Post → Click → Cart → Purchase — tracked in one clean view.
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 py-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[9px] font-semibold text-foreground">Sync Jumia</span>
+                  </span>
+                  <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-accent/20 px-2 py-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                    <span className="text-[9px] font-semibold text-foreground">WhatsApp</span>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
