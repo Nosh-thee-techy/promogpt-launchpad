@@ -39,33 +39,26 @@ const Countdown = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a12] via-[#0d1117] to-[#0a0a12]" />
       
       {/* Subtle star-like dots */}
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: "radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.2) 0%, transparent 100%), radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.25) 0%, transparent 100%), radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.15) 0%, transparent 100%)",
-      }} />
+      <div
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage:
+            "radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.2) 0%, transparent 100%), radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.25) 0%, transparent 100%), radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.15) 0%, transparent 100%)",
+        }}
+      />
 
-      {/* Planet image — positioned to the left like the NASA moon */}
-      <motion.div
-        initial={{ opacity: 0, x: -60 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="absolute left-[-15%] sm:left-[-8%] md:left-[-5%] top-[15%] sm:top-[12%] md:top-[10%] w-[35%] sm:w-[35%] md:w-[30%] lg:w-[28%] max-w-[420px] pointer-events-none"
-      >
-        {/* Pulsing glow behind brain */}
-        <motion.div
-          animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.9, 1.05, 0.9] }}
-          transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
-          className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10"
-        />
-        <motion.img
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-          src={countdownPlanet}
-          alt="PromoGPT AI marketing brain with digital circuits and campaign icons"
-          className="w-full h-auto drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]"
-          loading="lazy"
-        />
-      </motion.div>
+      {/* Static brain planet, softened so it doesn't block text */}
+      <div className="absolute inset-y-0 left-[-10%] sm:left-0 flex items-center pointer-events-none">
+        <div className="relative w-[55vw] max-w-[360px] opacity-50 sm:opacity-70 mix-blend-screen">
+          <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10" />
+          <img
+            src={countdownPlanet}
+            alt="PromoGPT AI marketing brain with digital circuits and campaign icons"
+            className="w-full h-auto drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]"
+            loading="lazy"
+          />
+        </div>
+      </div>
 
       {/* Content — offset to the right */}
       <div className="container mx-auto relative z-10">
@@ -111,9 +104,9 @@ const Countdown = () => {
 
           <div className="pt-4">
             <Button
-              variant="outline"
+              variant="gold"
               size="lg"
-              className="text-sm tracking-[0.15em] uppercase px-10 py-6 border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
+              className="text-sm tracking-[0.15em] uppercase px-10 py-6"
               onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
             >
               Join Waitlist

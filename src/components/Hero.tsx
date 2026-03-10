@@ -38,16 +38,6 @@ const Hero = () => {
             transition={{ duration: 0.7 }}
             className="max-w-xl"
           >
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary border border-border mb-6"
-            >
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-sm font-medium text-muted-foreground">Early Access — Limited Spots Available</span>
-            </motion.div>
-
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
               Your AI-Powered{" "}
               <span className="gold-gradient-text">Marketing Team</span>
@@ -79,18 +69,14 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative flex items-center justify-center"
           >
-            <motion.div
-              animate={{ rotateY: [0, 360] }}
-              transition={{ duration: 30, ease: "linear", repeat: Infinity }}
-              style={{ perspective: 1000, transformStyle: "preserve-3d" }}
-            >
+            <div>
               <img
                 src={hero3d}
                 alt="PromoGPT 3D marketing analytics city visualization"
                 className="w-full max-w-lg lg:max-w-2xl h-auto drop-shadow-2xl"
                 loading="eager"
               />
-            </motion.div>
+            </div>
             {/* Glow behind 3D image */}
             <div className="absolute inset-0 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl -z-10 scale-75" />
           </motion.div>

@@ -5,7 +5,6 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const navLinks = [
-  { href: "#features", label: "Features" },
   { href: "#how-it-works", label: "How It Works" },
   { href: "#faq", label: "FAQ" },
   { href: "https://calendly.com/promogpt-ke", label: "Book a Demo", external: true },
@@ -14,6 +13,21 @@ const navLinks = [
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleNavClick = (href: string, external?: boolean) => {
+    if (external) {
+      window.open(href, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if (href.startsWith("#")) {
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   const scrollToWaitlist = () => {
     setMobileOpen(false);
@@ -34,16 +48,19 @@ const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              {...((link as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className={`text-sm transition-colors ${(link as any).external ? "text-accent hover:text-accent/80 font-medium" : "text-muted-foreground hover:text-foreground"}`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isExternal = (link as any).external;
+            return (
+              <button
+                key={link.href}
+                type="button"
+                onClick={() => handleNavClick(link.href, isExternal)}
+                className={`text-sm transition-colors ${(isExternal ? "text-accent hover:text-accent/80 font-medium" : "text-muted-foreground hover:text-foreground")}`}
+              >
+                {link.label}
+              </button>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -91,17 +108,24 @@ const Navbar = () => {
             className="md:hidden overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-lg"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  {...((link as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  onClick={() => setMobileOpen(false)}
-                  className={`text-sm font-medium transition-colors py-2 ${(link as any).external ? "text-accent hover:text-accent/80" : "text-muted-foreground hover:text-foreground"}`}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isExternal = (link as any).external;
+                return (
+                  <button
+                    key={link.href}
+                    type="button"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      handleNavClick(link.href, isExternal);
+                    }}
+                    className={`text-sm font-medium text-left transition-colors py-2 ${
+                      isExternal ? "text-accent hover:text-accent/80" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
               <Button variant="gold" size="sm" className="w-full mt-2" onClick={scrollToWaitlist}>
                 Join Waitlist
               </Button>

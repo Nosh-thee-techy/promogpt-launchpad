@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import MarqueeTicker from "@/components/MarqueeTicker";
 import Countdown from "@/components/Countdown";
-import Features from "@/components/Features";
 import BuiltForAfrica from "@/components/BuiltForAfrica";
 import DashboardPreview from "@/components/DashboardPreview";
 import HowItWorks from "@/components/HowItWorks";
@@ -20,9 +19,6 @@ const Index = () => {
         <Hero />
         <MarqueeTicker />
         <Countdown />
-        <div id="features">
-          <Features />
-        </div>
         <BuiltForAfrica />
         <DashboardPreview />
         <div id="how-it-works">

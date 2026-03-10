@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Database, Megaphone, TrendingUp, BarChart3 } from "lucide-react";
 import featureData from "@/assets/feature-data.png";
 import featureCampaign from "@/assets/feature-campaign.png";
@@ -37,6 +38,8 @@ const features = [
 ];
 
 const Features = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
   return (
     <section className="section-padding bg-secondary/30 relative overflow-hidden">
       {/* Decorative blob */}
@@ -60,7 +63,7 @@ const Features = () => {
           </p>
         </motion.div>
 
-        {/* Bento grid layout */}
+        {/* Compact cards that expand for more detail */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
@@ -70,29 +73,35 @@ const Features = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -4 }}
-              className={`group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 ${feature.span}`}
+              onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 cursor-pointer`}
             >
-              {/* Image area */}
-              <div className="relative h-40 sm:h-48 overflow-hidden">
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                
-                {/* Icon floating over image */}
-                <div className="absolute bottom-3 left-5 w-10 h-10 rounded-lg bg-card/80 backdrop-blur-sm flex items-center justify-center border border-border/50">
+              {/* Compact header */}
+              <div className="p-5 sm:p-6 relative flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
                   <feature.icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
                 </div>
-              </div>
 
-              {/* Text content */}
-              <div className="p-5 sm:p-6 relative">
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold mb-1">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                    {feature.description}
+                  </p>
+                  <button
+                    type="button"
+                    className="mt-3 text-xs font-semibold text-accent hover:text-accent/80 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setExpandedIndex(expandedIndex === index ? null : index);
+                    }}
+                  >
+                    {expandedIndex === index ? "Hide details" : "View details"}
+                  </button>
+                </div>
+
                 {/* Number watermark */}
                 <span
-                  className="absolute -bottom-2 -right-1 text-[5rem] font-heading font-bold leading-none pointer-events-none select-none"
+                  className="absolute -bottom-2 -right-1 text-[4rem] font-heading font-bold leading-none pointer-events-none select-none"
                   style={{
                     WebkitTextStroke: "1px hsl(var(--primary) / 0.06)",
                     WebkitTextFillColor: "transparent",
@@ -100,10 +109,33 @@ const Features = () => {
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-
-                <h3 className="text-lg font-semibold mb-2 relative z-10">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed relative z-10">{feature.description}</p>
               </div>
+
+              {/* Expanded details */}
+              <AnimatePresence initial={false}>
+                {expandedIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -4 }}
+                    animate={{ opacity: 1, height: "auto", y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    className="px-5 sm:px-6 pb-5 sm:pb-6 space-y-4"
+                  >
+                    <div className="relative h-32 sm:h-40 rounded-xl overflow-hidden">
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-card/30 to-transparent" />
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>

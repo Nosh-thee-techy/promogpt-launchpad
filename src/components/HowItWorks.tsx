@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Store, Brain, Share2, TrendingUp } from "lucide-react";
 import stepConnect from "@/assets/step-connect.png";
 import stepAi from "@/assets/step-ai.png";
@@ -38,6 +39,8 @@ const steps = [
 ];
 
 const HowItWorks = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <section className="section-padding relative overflow-hidden">
       {/* Outline text background */}
@@ -70,7 +73,7 @@ const HowItWorks = () => {
           </p>
         </motion.div>
 
-        {/* Bento grid */}
+        {/* Steps that open to show more detail */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
           {steps.map((step, index) => (
             <motion.div
@@ -80,7 +83,8 @@ const HowItWorks = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -4, scale: 1.01 }}
-              className={`group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 ${step.span}`}
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              className={`group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:shadow-accent/10 transition-all duration-300 cursor-pointer ${step.span}`}
             >
               {/* Image */}
               <div className={`relative overflow-hidden ${(step as any).tallImage ? "h-48 md:h-56" : "h-36 sm:h-44"}`}>
@@ -115,8 +119,49 @@ const HowItWorks = () => {
                 </span>
 
                 <div className="relative z-10">
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-accent transition-colors">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-lg sm:text-xl font-bold mb-1 group-hover:text-accent transition-colors">
+                      {step.title}
+                    </h3>
+                    <button
+                      type="button"
+                      className="text-xs font-semibold text-accent hover:text-accent/80 mt-0.5"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenIndex(openIndex === index ? null : index);
+                      }}
+                    >
+                      {openIndex === index ? "Hide step" : "View step"}
+                    </button>
+                  </div>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+
+                  <AnimatePresence initial={false}>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0, y: -4 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -4 }}
+                        transition={{ duration: 0.25 }}
+                        className="mt-3 space-y-2 text-xs text-muted-foreground"
+                      >
+                        <p>
+                          <span className="font-semibold text-foreground">What happens here:</span>{" "}
+                          {index === 0 &&
+                            "We connect to your catalog, pull in products, pricing, and stock so every campaign is grounded in real inventory."}
+                          {index === 1 &&
+                            "PromoGPT’s models look at your data and automatically assemble campaigns, audiences, and messaging."}
+                          {index === 2 &&
+                            "Approved campaigns are posted to your channels and every click, view, and add-to-cart is tracked."}
+                          {index === 3 &&
+                            "You get a clear view of the sales that came from PromoGPT, including weekly intelligence updates."}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </motion.div>
