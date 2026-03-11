@@ -21,7 +21,7 @@ const Waitlist = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
 
@@ -36,11 +36,36 @@ const Waitlist = () => {
     }
 
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+
+    try {
+      const webhookUrl = import.meta.env.VITE_WAITLIST_WEBHOOK_URL;
+
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            submittedAt: new Date().toISOString(),
+          }),
+        });
+      } else {
+        console.warn("VITE_WAITLIST_WEBHOOK_URL is not set; skipping external submission.");
+      }
+
       setShowSuccess(true);
       setFormData({ name: "", email: "", businessType: "", budget: "" });
-    }, 1000);
+    } catch (err) {
+      console.error("Failed to submit waitlist form", err);
+      setErrors((prev) => ({
+        ...prev,
+        form: "Something went wrong. Please try again.",
+      }));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
