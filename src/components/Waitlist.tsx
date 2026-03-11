@@ -41,7 +41,7 @@ const Waitlist = () => {
       const webhookUrl = import.meta.env.VITE_WAITLIST_WEBHOOK_URL;
 
       if (webhookUrl) {
-        await fetch(webhookUrl, {
+        const response = await fetch(webhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -51,6 +51,9 @@ const Waitlist = () => {
             submittedAt: new Date().toISOString(),
           }),
         });
+        if (!response.ok) {
+          throw new Error(`Webhook responded with status ${response.status}`);
+        }
       } else {
         console.warn("VITE_WAITLIST_WEBHOOK_URL is not set; skipping external submission.");
       }
@@ -185,6 +188,10 @@ const Waitlist = () => {
           >
             {submitting ? "Reserving..." : "Reserve My Spot"}
           </Button>
+
+          {errors.form && (
+            <p className="text-destructive text-sm text-center">{errors.form}</p>
+          )}
         </motion.form>
 
         <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
