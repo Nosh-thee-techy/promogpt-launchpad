@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CheckCircle2 } from "lucide-react";
 import { z } from "zod";
 
@@ -169,10 +169,14 @@ const Waitlist = () => {
                 <CheckCircle2 className="w-8 h-8 text-foreground" />
               </div>
             </div>
-            <h3 className="text-2xl font-bold mb-2">You're officially on the list.</h3>
-            <p className="text-muted-foreground">
-              We'll be in touch with your early access details. Get ready.
-            </p>
+            <DialogTitle asChild>
+              <h3 className="text-2xl font-bold mb-2">You're officially on the list.</h3>
+            </DialogTitle>
+            <DialogDescription asChild>
+              <p className="text-muted-foreground">
+                We'll be in touch with your early access details. Get ready.
+              </p>
+            </DialogDescription>
           </DialogContent>
         </Dialog>
       </div>
